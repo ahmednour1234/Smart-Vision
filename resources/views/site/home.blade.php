@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             @if(!empty($event->row_image))
-                                <div class="mt-4 rounded-xl bg-white/5 ring-1 ring-white/10 h-20 md:h-24 flex items-center justify-center overflow-hidden">
+                                <div class="mt-4 rounded-xl  h-20 md:h-24 flex items-center justify-center overflow-hidden">
                                     <img src="{{ asset($event->row_image) }}" alt="{{ $event->name }}" class="max-h-full w-auto object-contain opacity-95">
                                 </div>
                             @endif

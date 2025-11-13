@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     @if(!empty($event->row_image))
-                        <div class="mt-4 rounded-xl bg-white/5 ring-1 ring-white/10 h-24 md:h-28 flex items-center justify-center overflow-hidden">
+                        <div class="mt-4   h-24 md:h-28 flex items-center justify-center overflow-hidden">
                             <img src="{{ asset($event->row_image) }}" alt="{{ $event->name }}" class="max-h-full w-auto object-contain opacity-95">
                         </div>
                     @endif
