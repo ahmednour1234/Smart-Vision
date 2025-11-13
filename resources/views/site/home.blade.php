@@ -3,15 +3,15 @@
 
 @section('content')
     <div class="space-y-16">
-        <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-700/80 via-black/80 to-black/80 text-white p-8 md:p-16">
+        <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-700/80 via-black/80 to-black/80 text-white p-6 md:p-16">
             <div class="pointer-events-none absolute inset-0 overflow-hidden">
                 <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-red-600/30 blur-3xl"></div>
                 <div class="absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
             </div>
             <div class="flex flex-col items-center text-center gap-8">
                 <div class="text-center">
-                    <h1 class="text-5xl md:text-7xl font-semibold leading-tight">Smart Vision Summit</h1>
-                    <p class="mt-4 text-white/90 text-2xl">Connecting Financial Markets Across Borders</p>
+                    <h1 class="text-4xl md:text-5xl font-semibold leading-tight">Smart Vision Summit</h1>
+                    <p class="mt-4 text-white/90 text-lg md:text-2xl">Connecting Financial Markets Across Borders</p>
                 </div>
                 <div class="w-full max-w-5xl">
                     <div class="relative bg-gradient-to-r from-red-700 to-red-500 p-[6px] rounded-2xl shadow-2xl">
@@ -38,8 +38,8 @@
                                     @endif
                                         <div class="text-center md:text-left md:pl-8">
                                         @if($nearest)
-                                            <div class="mt-3 text-4xl md:text-5xl font-semibold">{{ $nearest->name }}</div>
-                                            <div class="mt-4 inline-flex items-center gap-3 text-white/90 text-3xl md:text-4xl font-semibold tracking-wide whitespace-nowrap">
+                                            <div class="mt-3 text-2xl md:text-5xl font-semibold">{{ $nearest->name }}</div>
+                                            <div class="mt-4 inline-flex items-center gap-3 text-white/90 text-xl md:text-4xl font-semibold tracking-wide whitespace-nowrap">
                                                 @if($nearest->start_at)
                                                     <span>{{ $nearest->start_at->format('F d') }}</span>
                                                     @if($nearest->end_at)
@@ -81,12 +81,12 @@
         <section>
             <div class="flex items-center gap-4 mb-6">
                 <span class="h-px flex-1 bg-white/20"></span>
-                <h2 class="text-4xl md:text-5xl font-semibold text-white text-center">{{ __('Find Upcoming Events') }}</h2>
+                <h2 class="text-2xl md:text-4xl font-semibold text-white text-center">{{ __('Find Upcoming Events') }}</h2>
                 <span class="h-px flex-1 bg-white/20"></span>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 @forelse($upcoming as $event)
-                    <div class="relative rounded-3xl overflow-hidden bg-black/90 border border-white/10 shadow-2xl ring-1 ring-white/5 transition hover:-translate-y-1 hover:shadow-[0_18px_60px_rgba(0,0,0,0.8)] min-h-[22rem] md:min-h-[24rem] flex flex-col">
+                    <div class="relative rounded-3xl overflow-hidden bg-black/90 border border-white/10 shadow-2xl ring-1 ring-white/5 transition hover:-translate-y-1 hover:shadow-[0_18px_60px_rgba(0,0,0,0.8)] min-h-[18rem] md:min-h-[22rem] flex flex-col">
                         @if($event->cover_image ?? $event->image)
                             <div class="absolute inset-0">
                                 <div class="w-full h-full bg-cover bg-center opacity-30"
@@ -94,24 +94,24 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="relative p-6 md:p-8 grow">
+                        <div class="relative p-4 md:p-4 grow">
                             <div class="text-white">
-                                <h3 class="text-2xl md:text-3xl font-semibold">{{ $event->name }}</h3>
-                                <div class="mt-1 text-white/80 text-base md:text-lg">
+                                <h3 class="text-base md:text-lg font-semibold">{{ $event->name }}</h3>
+                                <div class="mt-1 text-white/60 text-sm md:text-base">
                                     @if($event->start_at)
                                         {{ $event->start_at->format('F d') }} @if($event->end_at) - {{ $event->end_at->format('d, Y') }} @endif
                                     @endif
                                 </div>
                             </div>
                             @if(!empty($event->row_image))
-                                <div class="mt-4 rounded-xl bg-white/5 ring-1 ring-white/10 h-24 md:h-28 flex items-center justify-center overflow-hidden">
+                                <div class="mt-4 rounded-xl bg-white/5 ring-1 ring-white/10 h-20 md:h-24 flex items-center justify-center overflow-hidden">
                                     <img src="{{ asset($event->row_image) }}" alt="{{ $event->name }}" class="max-h-full w-auto object-contain opacity-95">
                                 </div>
                             @endif
                         </div>
                         <div class="relative border-t border-white/10 p-4 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-                            <a href="{{ route('events.show', $event->slug) }}" class="inline-flex items-center justify-center w-full sm:w-auto rounded-xl bg-white/10 text-white px-5 py-3 text-base md:text-lg hover:bg-white/15 ring-1 ring-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition">{{ __('Details') }}</a>
-                            <a href="{{ $event->website_url ?? route('events.show', $event->slug) }}" class="inline-flex items-center justify-center w-full sm:w-auto rounded-xl bg-red-600 text-white px-5 py-3 text-base md:text-lg hover:bg-red-500 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition">
+                            <a href="{{ route('events.show', $event->slug) }}" class="inline-flex items-center justify-center w-full sm:w-auto rounded-xl bg-white/10 text-white px-3 py-2 text-sm md:text-base hover:bg-white/15 ring-1 ring-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition">{{ __('Details') }}</a>
+                            <a href="{{ $event->website_url ?? route('events.show', $event->slug) }}" class="inline-flex items-center justify-center w-full sm:w-auto rounded-xl bg-red-600 text-white px-4 py-2 text-sm md:text-base hover:bg-red-500 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition">
                                 {{ __('Join Now') }}
                                 <svg class="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
                             </a>
@@ -128,10 +128,10 @@
                 <div>
                     <div class="flex items-center gap-4 mb-4">
                         <span class="h-px flex-1 bg-white/20"></span>
-                        <h2 class="text-4xl md:text-5xl font-semibold text-white text-center">{{ __('About SVS') }}</h2>
+                        <h2 class="text-3xl md:text-5xl font-semibold text-white text-center">{{ __('About SVS') }}</h2>
                         <span class="h-px flex-1 bg-white/20"></span>
                     </div>
-                    <p class="mt-4 text-white/80 text-2xl">{{ \Illuminate\Support\Str::limit(strip_tags($about->content), 380) }}</p>
+                    <p class="mt-4 text-white/80 text-lg md:text-2xl">{{ \Illuminate\Support\Str::limit(strip_tags($about->content), 380) }}</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
                     <div class="text-white rounded-2xl bg-white/[0.06] backdrop-blur p-6 ring-1 ring-white/10 hover:ring-white/20 transition">
@@ -159,7 +159,7 @@
         <section class="reveal-on-scroll">
             <div class="flex items-center gap-4 mb-4">
                 <span class="h-px flex-1 bg-white/20"></span>
-                <h2 class="text-4xl md:text-5xl font-semibold text-white text-center">{{ __('Past Events Gallery') }}</h2>
+                <h2 class="text-3xl md:text-5xl font-semibold text-white text-center">{{ __('Past Events Gallery') }}</h2>
                 <span class="h-px flex-1 bg-white/20"></span>
             </div>
             <div class="mt-4 columns-2 md:columns-3 lg:columns-4 gap-x-4 md:gap-x-6">
