@@ -60,6 +60,13 @@
             </svg>
             Media
         </a>
+        <a href="{{ route('dashboard.testimonials.index') }}"
+           class="group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('dashboard.testimonials.*') ? 'bg-white/10 text-white' : 'text-white/80 hover:bg-white/5' }}">
+            <svg class="h-5 w-5 text-white/50 group-hover:text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 8h10M7 12h8M7 16h6M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5A2 2 0 003 5v14a2 2 0 002 2z"/>
+            </svg>
+            Testimonials
+        </a>
     </nav>
     <div class="p-4 border-t border-white/10">
         <form method="POST" action="{{ route('logout') }}">

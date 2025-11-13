@@ -10,6 +10,8 @@ use App\Http\Controllers\Dashboard\ContactMessageController as DashboardContactM
 use App\Http\Controllers\Dashboard\MediaController as DashboardMediaController;
 use App\Http\Controllers\Dashboard\PasswordController as DashboardPasswordController;
 use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
+use App\Http\Controllers\Dashboard\TestimonialController as DashboardTestimonialController;
+use App\Http\Controllers\Dashboard\FaqController as DashboardFaqController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -82,6 +84,12 @@ Route::middleware('auth')->prefix('dashboard')
 
         // Users management
         Route::resource('users', DashboardUserController::class)->except('show');
+
+        // Testimonials
+        Route::resource('testimonials', DashboardTestimonialController::class)->except('show');
+
+        // FAQs
+        Route::resource('faqs', DashboardFaqController::class)->except('show');
     });
 
 // Public gallery page

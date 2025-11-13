@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\AboutUs;
+use App\Models\Testimonial;
+use App\Models\Faq;
 
 class HomeController extends Controller
 {
@@ -18,7 +20,9 @@ class HomeController extends Controller
             ->get();
 
         $about = AboutUs::active();
+        $testimonials = Testimonial::query()->where('is_active', true)->orderBy('sort_order')->orderBy('id')->take(12)->get();
+        $faqs = Faq::query()->where('is_active', true)->orderBy('sort_order')->orderBy('id')->take(10)->get();
 
-        return view('site.home', compact('nearest','upcoming','about'));
+        return view('site.home', compact('nearest','upcoming','about','testimonials','faqs'));
     }
 }
