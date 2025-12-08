@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\AboutUs;
 use App\Models\Testimonial;
 use App\Models\Faq;
+use App\Models\Video;
 
 class HomeController extends Controller
 {
@@ -21,7 +22,8 @@ class HomeController extends Controller
         $about = AboutUs::active();
         $testimonials = Testimonial::query()->where('is_active', true)->orderBy('sort_order')->orderBy('id')->take(12)->get();
         $faqs = Faq::query()->where('is_active', true)->orderBy('sort_order')->orderBy('id')->take(10)->get();
+        $videos = Video::query()->where('is_active', true)->orderBy('section')->orderBy('sort_order')->orderBy('id')->get();
 
-        return view('site.home', compact('nearest','upcoming','about','testimonials','faqs'));
+        return view('site.home', compact('nearest','upcoming','about','testimonials','faqs','videos'));
     }
 }

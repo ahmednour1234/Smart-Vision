@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\PasswordController as DashboardPasswordContro
 use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use App\Http\Controllers\Dashboard\TestimonialController as DashboardTestimonialController;
 use App\Http\Controllers\Dashboard\FaqController as DashboardFaqController;
+use App\Http\Controllers\Dashboard\VideoController as DashboardVideoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -90,6 +91,9 @@ Route::middleware('auth')->prefix('dashboard')
 
         // FAQs
         Route::resource('faqs', DashboardFaqController::class)->except('show');
+
+        // Videos
+        Route::resource('videos', DashboardVideoController::class)->except('show');
     });
 
 // Public gallery page
