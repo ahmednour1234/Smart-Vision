@@ -13,6 +13,8 @@ use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use App\Http\Controllers\Dashboard\TestimonialController as DashboardTestimonialController;
 use App\Http\Controllers\Dashboard\FaqController as DashboardFaqController;
 use App\Http\Controllers\Dashboard\VideoController as DashboardVideoController;
+use App\Http\Controllers\Dashboard\SponsorController as DashboardSponsorController;
+use App\Http\Controllers\SponsorController as PublicSponsorController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +28,7 @@ Route::get('/events/{slug}', [EventController::class, 'show'])->name('events.sho
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [PageController::class, 'sendContact'])->name('contact.send');
+Route::get('/sponsors', [PublicSponsorController::class, 'index'])->name('sponsors.index');
 
 // Locale switcher (redirect keeping path)
 Route::get('/lang/{locale}', function ($locale) {
@@ -94,6 +97,9 @@ Route::middleware('auth')->prefix('dashboard')
 
         // Videos
         Route::resource('videos', DashboardVideoController::class)->except('show');
+
+        // Sponsors
+        Route::resource('sponsors', DashboardSponsorController::class)->except('show');
     });
 
 // Public gallery page

@@ -67,6 +67,13 @@
             </svg>
             Videos
         </a>
+        <a href="{{ route('dashboard.sponsors.index') }}"
+           class="group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('dashboard.sponsors.*') ? 'bg-white/10 text-white' : 'text-white/80 hover:bg-white/5' }}">
+            <svg class="h-5 w-5 text-white/50 group-hover:text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7h18M3 12h18M3 17h18"/>
+            </svg>
+            Sponsors
+        </a>
         <a href="{{ route('dashboard.testimonials.index') }}"
            class="group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('dashboard.testimonials.*') ? 'bg-white/10 text-white' : 'text-white/80 hover:bg-white/5' }}">
             <svg class="h-5 w-5 text-white/50 group-hover:text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor">

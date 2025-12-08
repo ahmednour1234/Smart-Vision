@@ -127,7 +127,7 @@
 
             <div class="rounded-xl border bg-white p-6 shadow-sm dash-card">
                 <h2 class="form-section-title">Home Sections Order</h2>
-                <p class="mt-2 text-sm text-gray-600">Arrange sections by order (top to bottom). Put each key on a new line. Available keys: hero, upcoming, about, testimonials, cta, faq, videos, gallery. Omit a key to hide that section.</p>
+                <p class="mt-2 text-sm text-gray-600">Arrange sections by order (top to bottom). Put each key on a new line. Available keys: hero, upcoming, about, testimonials, cta, faq, videos, gallery, sponsors. Omit a key to hide that section.</p>
                 @php
                     $defaultHomeSections = "hero\nupcoming\nabout\ntestimonials\ncta\nfaq\nvideos\ngallery";
                 @endphp
