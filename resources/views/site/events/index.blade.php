@@ -33,7 +33,7 @@
                     @endif
                 </div>
                 <div class="relative border-t border-white/10 p-4 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-                    <a href="{{ route('events.show', $event->slug) }}" class="inline-flex items-center justify-center w-full sm:w-auto rounded-xl bg-white/10 text-white px-5 py-3 text-base md:text-lg hover:bg-white/15 ring-1 ring-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition">{{ __('Details') }}</a>
+                    <a href="{{ $event->website_url ?? route('events.show', $event->slug) }}" class="inline-flex items-center justify-center w-full sm:w-auto rounded-xl bg-white/10 text-white px-5 py-3 text-base md:text-lg hover:bg-white/15 ring-1 ring-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition">{{ __('Details') }}</a>
                     <a href="{{ $event->website_url ?? route('events.show', $event->slug) }}" class="inline-flex items-center justify-center w-full sm:w-auto rounded-xl bg-red-600 text-white px-5 py-3 text-base md:text-lg hover:bg-red-500 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition">
                         {{ __('Join Now') }}
                         <svg class="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>

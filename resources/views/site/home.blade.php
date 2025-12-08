@@ -116,7 +116,7 @@
                             @endif
                         </div>
                         <div class="relative border-t border-white/10 p-4 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-                            <a href="{{ route('events.show', $event->slug) }}" class="inline-flex items-center justify-center w-full sm:w-auto rounded-xl bg-white/10 text-white px-3 py-2 text-sm md:text-base hover:bg-white/15 ring-1 ring-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition hover:-translate-y-0.5">{{ __('Details') }}</a>
+                            <a href="{{ $event->website_url ?? route('events.show', $event->slug) }}" class="inline-flex items-center justify-center w-full sm:w-auto rounded-xl bg-white/10 text-white px-3 py-2 text-sm md:text-base hover:bg-white/15 ring-1 ring-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition hover:-translate-y-0.5">{{ __('Details') }}</a>
                             <a href="{{ $event->website_url ?? route('events.show', $event->slug) }}" class="inline-flex items-center justify-center w-full sm:w-auto rounded-xl bg-red-600 text-white px-4 py-2 text-sm md:text-base hover:bg-red-500 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 transition hover:-translate-y-0.5">
                                 {{ __('Join Now') }}
                                 <svg class="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
@@ -138,7 +138,10 @@
                         <h2 class="text-3xl md:text-5xl font-semibold text-white text-center">{{ __('About SVS') }}</h2>
                         <span class="h-px flex-1 bg-white/20"></span>
                     </div>
-                    <p class="mt-4 text-white/80 text-lg md:text-2xl">{{ \Illuminate\Support\Str::limit(strip_tags($about->content), 380) }}</p>
+<p class="mt-4 text-white/80 text-lg md:text-2xl leading-relaxed text-left"
+   dir="rtl">
+    {{ \Illuminate\Support\Str::limit(strip_tags($about->content), 50000) }}
+</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
                     <div class="text-white rounded-2xl bg-white/[0.06] backdrop-blur p-6 ring-1 ring-white/10 hover:ring-white/20 transition">
@@ -210,8 +213,13 @@
                     <p class="mt-1 text-white/80 text-sm md:text-base">{{ __('Become a sponsor or register for upcoming events today.') }}</p>
                 </div>
                 <div class="mt-3 md:mt-0 md:ml-auto flex items-center gap-3">
-                    <a href="{{ route('contact') }}" class="inline-flex items-center rounded-xl bg-white text-black px-4 md:px-5 py-2 md:py-2.5 text-sm md:text-base font-semibold hover:bg-zinc-100 transition">{{ __('Become Sponsor') }}</a>
-                    <a href="{{ route('events.index') }}" class="inline-flex items-center rounded-xl bg-red-600 text-white px-4 md:px-5 py-2 md:py-2.5 text-sm md:text-base font-semibold hover:bg-red-500 transition">{{ __('Register Now') }}</a>
+<a href="{{ route('contact') }}"
+   style="background:white; color:#d10000; padding:8px 20px; border-radius:12px; font-weight:600; display:inline-flex; align-items:center; transition:0.2s;"
+   onmouseover="this.style.background='#fceaea'; this.style.color='#a00000';"
+   onmouseout="this.style.background='white'; this.style.color='#d10000';">
+    {{ __('Contact Us') }}
+</a>
+                    <!--<a href="{{ route('events.index') }}" class="inline-flex items-center rounded-xl bg-red-600 text-white px-4 md:px-5 py-2 md:py-2.5 text-sm md:text-base font-semibold hover:bg-red-500 transition">{{ __('Register Now') }}</a>-->
                 </div>
             </div>
         </section>

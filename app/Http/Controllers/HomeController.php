@@ -16,7 +16,6 @@ class HomeController extends Controller
         $upcoming = Event::active()
             ->where('start_at', '>=', now())
             ->orderBy('start_at')
-            ->take(6)
             ->get();
 
         $about = AboutUs::active();
