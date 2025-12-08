@@ -125,6 +125,16 @@
                 </div>
             </div>
 
+            <div class="rounded-xl border bg-white p-6 shadow-sm dash-card">
+                <h2 class="form-section-title">Home Sections Order</h2>
+                <p class="mt-2 text-sm text-gray-600">Arrange sections by order (top to bottom). Put each key on a new line. Available keys: hero, upcoming, about, testimonials, cta, faq, videos, gallery. Omit a key to hide that section.</p>
+                @php
+                    $defaultHomeSections = "hero\nupcoming\nabout\ntestimonials\ncta\nfaq\nvideos\ngallery";
+                @endphp
+                <textarea name="home_sections" rows="6" class="mt-3 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">{{ old('home_sections', $settings['home_sections'] ?? $defaultHomeSections) }}</textarea>
+                @error('home_sections') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
+            </div>
+
             <div>
                 <button class="inline-flex items-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800">
                     Save Settings

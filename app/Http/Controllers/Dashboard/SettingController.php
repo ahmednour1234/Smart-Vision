@@ -17,6 +17,7 @@ class SettingController extends Controller
             'logo','logo_upload',
             'facebook','instagram','x','linkedin','tiktok','youtube',
             'map_lat','map_lng',
+            'home_sections',
         ];
 
         $values = [];
@@ -47,6 +48,7 @@ class SettingController extends Controller
             'youtube' => ['nullable','url','max:255'],
             'map_lat' => ['nullable','numeric'],
             'map_lng' => ['nullable','numeric'],
+            'home_sections' => ['nullable','string','max:2000'],
         ]);
 
         foreach ($data as $k => $v) {
