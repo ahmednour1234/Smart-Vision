@@ -13,7 +13,13 @@
         <div class="slider-track flex transition-transform duration-500 ease-out" style="will-change: transform;">
             @foreach($testimonials as $idx => $t)
                 <div class="shrink-0 w-full md:w-1/3 p-4 md:p-5">
-                    <div class="tcard h-full rounded-2xl ring-1 ring-white/10 bg-black/50 p-5 md:p-6 text-white/90 relative flex flex-col items-center text-center">
+                    <div
+                        class="tcard h-full rounded-2xl ring-1 ring-white/10 bg-black/50 p-5 md:p-6 text-white/90 relative flex flex-col items-center text-center cursor-pointer"
+                        data-name="{{ $t->name }}"
+                        data-role="{{ $t->role }}"
+                        data-quote="{{ e($t->quote) }}"
+                        data-avatar="{{ !empty($t->avatar) ? asset($t->avatar) : '' }}"
+                    >
                         @if(!empty($t->avatar))
                             <div class="relative -mt-10 mb-3">
                                 <div class="h-16 w-16 md:h-20 md:w-20 rounded-full ring-2 ring-white/20 bg-white/10 overflow-hidden shadow-lg mx-auto">
@@ -33,6 +39,63 @@
             @endfor
         </div>
     </div>
+
+    <div id="testimonial-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/70"></div>
+        <div class="relative mx-auto w-[92%] max-w-xl mt-24">
+            <div class="rounded-2xl bg-gradient-to-br from-red-700/80 via-black/90 to-black/90 ring-1 ring-white/10 p-6 md:p-8 text-white shadow-2xl">
+                <button type="button" class="tm-close absolute top-2 right-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10 hover:bg-white/15 ring-1 ring-white/10">✕</button>
+                <div class="flex flex-col items-center text-center">
+                    <div class="tm-avatar h-16 w-16 md:h-20 md:w-20 rounded-full ring-2 ring-white/20 bg-white/10 overflow-hidden shadow-lg mb-4"></div>
+                    <p class="tm-quote text-base md:text-lg leading-relaxed"></p>
+                    <div class="mt-4 tm-name text-white/80 font-semibold"></div>
+                    <div class="tm-role text-white/60 text-sm"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('testimonial-modal');
+            if (!modal) return;
+            const quoteEl = modal.querySelector('.tm-quote');
+            const nameEl = modal.querySelector('.tm-name');
+            const roleEl = modal.querySelector('.tm-role');
+            const avatarWrap = modal.querySelector('.tm-avatar');
+            const closeBtn = modal.querySelector('.tm-close');
+            const backdrop = modal.firstElementChild;
+
+            const open = (data) => {
+                quoteEl.textContent = '“' + (data.quote || '') + '”';
+                nameEl.textContent = data.name || '';
+                roleEl.textContent = data.role || '';
+                avatarWrap.innerHTML = data.avatar
+                    ? '<img src=\"' + data.avatar + '\" alt=\"' + (data.name || '') + '\" class=\"h-full w-full object-cover\">'
+                    : '';
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            };
+            const close = () => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            };
+            closeBtn.addEventListener('click', close);
+            backdrop.addEventListener('click', close);
+            window.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+            document.querySelectorAll('#testimonials-slider .tcard').forEach(card => {
+                card.addEventListener('click', () => {
+                    const data = {
+                        name: card.getAttribute('data-name') || '',
+                        role: card.getAttribute('data-role') || '',
+                        quote: card.getAttribute('data-quote') || '',
+                        avatar: card.getAttribute('data-avatar') || ''
+                    };
+                    open(data);
+                });
+            });
+        });
+    </script>
 </section>
 @endif
 
