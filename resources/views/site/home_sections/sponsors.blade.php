@@ -30,6 +30,9 @@
         <h2 class="text-3xl md:text-5xl font-semibold text-white text-center">{{ __('Sponsors') }}</h2>
         <span class="h-px flex-1 bg-white/20"></span>
     </div>
+    <p class="mb-8 text-center text-sm md:text-base font-medium tracking-[0.2em] uppercase text-white/60">
+        {{ __('Our Previous Clients') }}
+    </p>
     @foreach($groups as $title => $items)
         <div class="mb-4 text-center">
             <span class="inline-flex items-center rounded-full bg-gradient-to-r from-red-600/70 via-black/70 to-red-700/70 px-4 py-1.5 text-sm md:text-base font-semibold text-white ring-1 ring-white/10 shadow">

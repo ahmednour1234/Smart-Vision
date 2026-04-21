@@ -32,6 +32,9 @@
                     }
                 }
             </style>
+            <p class="mb-8 text-center text-sm md:text-base font-medium tracking-[0.2em] uppercase text-white/60">
+                {{ __('Our Previous Clients') }}
+            </p>
             @foreach($groups as $title => $items)
                 <div class="mb-6 text-center">
                     <span class="inline-flex items-center rounded-full bg-gradient-to-r from-red-600/70 via-black/70 to-red-700/70 px-4 py-1.5 text-base md:text-lg font-semibold text-white ring-1 ring-white/10 shadow">
