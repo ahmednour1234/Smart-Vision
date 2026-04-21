@@ -127,9 +127,9 @@
 
             <div class="rounded-xl border bg-white p-6 shadow-sm dash-card">
                 <h2 class="form-section-title">Home Sections Order</h2>
-                <p class="mt-2 text-sm text-gray-600">Arrange sections by order (top to bottom). Put each key on a new line. Available keys: hero, upcoming, about, testimonials, cta, faq, videos, gallery, sponsors. Omit a key to hide that section.</p>
+                <p class="mt-2 text-sm text-gray-600">Arrange sections by order (top to bottom). Put each key on a new line. Available keys: hero, upcoming, about, testimonials, cta, faq, videos, gallery, sponsors. Comma-separated values are also supported. Any known section not listed here will be appended automatically.</p>
                 @php
-                    $defaultHomeSections = "hero\nupcoming\nabout\ntestimonials\ncta\nfaq\nvideos\ngallery";
+                    $defaultHomeSections = "hero\nvideos\nupcoming\nabout\ntestimonials\ncta\nsponsors\nfaq\ngallery";
                 @endphp
                 <textarea name="home_sections" rows="6" class="mt-3 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">{{ old('home_sections', $settings['home_sections'] ?? $defaultHomeSections) }}</textarea>
                 @error('home_sections') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror

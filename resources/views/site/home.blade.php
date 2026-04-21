@@ -4,10 +4,22 @@
 @section('content')
     <div class="space-y-16">
         @php
-            $defaultHomeSections = "hero,videos,upcoming,about,testimonials,cta,sponsors,faq,gallery";
+            $defaultHomeSections = ['hero', 'videos', 'upcoming', 'about', 'testimonials', 'cta', 'sponsors', 'faq', 'gallery'];
             $homeSectionsRaw = \App\Models\Setting::getValue('home_sections');
-            $lines = $homeSectionsRaw ? preg_split("/\\r\\n|\\r|\\n/", $homeSectionsRaw) : explode(',', $defaultHomeSections);
-            $sections = collect($lines)->map(fn($s) => trim($s))->filter()->values();
+            $configuredSections = collect(
+                $homeSectionsRaw
+                    ? preg_split('/[\r\n,]+/', $homeSectionsRaw)
+                    : $defaultHomeSections
+            )
+                ->map(fn($section) => trim((string) $section))
+                ->filter()
+                ->unique()
+                ->values();
+
+            $sections = $configuredSections
+                ->concat(collect($defaultHomeSections)->diff($configuredSections))
+                ->filter(fn($section) => view()->exists('site.home_sections.' . $section))
+                ->values();
         @endphp
         @foreach($sections as $sec)
             @includeIf('site.home_sections.' . $sec)
