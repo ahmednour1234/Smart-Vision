@@ -30,7 +30,12 @@
         // Animate-in on scroll (from left/right/up)
         (function () {
             const els = document.querySelectorAll('.animate-in');
-            els.forEach((el) => {
+            const isVisibleOnLoad = (el) => {
+                const rect = el.getBoundingClientRect();
+                const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+                return rect.top < viewportHeight * 0.9 && rect.bottom > 0;
+            };
+            const setInitialState = (el) => {
                 const dir = el.getAttribute('data-direction') || 'up';
                 el.style.opacity = '0';
                 if (dir === 'left') {
@@ -41,11 +46,20 @@
                     el.style.transform = 'translateY(16px)';
                 }
                 el.style.transition = 'opacity .6s ease, transform .6s ease';
-            });
+            };
             const reveal = (target) => {
                 target.style.opacity = '1';
                 target.style.transform = 'translateX(0) translateY(0)';
             };
+
+            els.forEach((el) => {
+                if (isVisibleOnLoad(el)) {
+                    el.style.transition = 'opacity .6s ease, transform .6s ease';
+                    reveal(el);
+                } else {
+                    setInitialState(el);
+                }
+            });
             if ('IntersectionObserver' in window) {
                 const obs = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
@@ -55,7 +69,11 @@
                         }
                     });
                 }, { threshold: 0.2 });
-                els.forEach(el => obs.observe(el));
+                els.forEach(el => {
+                    if (!isVisibleOnLoad(el)) {
+                        obs.observe(el);
+                    }
+                });
             } else {
                 els.forEach(reveal);
             }
