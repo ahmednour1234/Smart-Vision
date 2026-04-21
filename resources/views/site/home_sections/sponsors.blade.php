@@ -29,22 +29,22 @@
                     <div class="rounded-3xl bg-black/85 ring-1 ring-white/10 p-8 md:p-9 text-center shadow-xl transition duration-500 group-hover:ring-white/20 group-hover:shadow-[0_18px_60px_rgba(0,0,0,0.7)] flex flex-col items-center justify-between">
                         @if($sp->url)
                             <a href="{{ $sp->url }}" target="_blank" rel="noopener" class="block w-full focus:outline-none focus:ring-2 focus:ring-red-600/40 rounded-xl">
-                                <div class="s-logo-wrap grid place-items-center">
+                                <div class="s-logo-wrap grid place-items-center rounded-2xl bg-white px-4 py-3 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]">
                                     @if($sp->logo)
-                                        <img src="{{ asset($sp->logo) }}" alt="{{ $sp->name }}" class="max-h-full w-auto object-contain opacity-95 group-hover:opacity-100 transition-transform duration-500 ease-out group-hover:scale-105 mix-blend-multiply brightness-110 contrast-110" loading="lazy" decoding="async"/>
+                                        <img src="{{ asset($sp->logo) }}" alt="{{ $sp->name }}" class="max-h-full w-auto object-contain opacity-95 group-hover:opacity-100 transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy" decoding="async"/>
                                     @else
-                                        <span class="text-white/85 text-lg">{{ $sp->name }}</span>
+                                        <span class="text-slate-900 text-lg font-semibold">{{ $sp->name }}</span>
                                     @endif
                                 </div>
                                 <div class="mt-6 text-sm md:text-base font-semibold text-red-500">{{ $title }}</div>
                             </a>
                         @else
                             <div class="w-full">
-                                <div class="s-logo-wrap grid place-items-center">
+                                <div class="s-logo-wrap grid place-items-center rounded-2xl bg-white px-4 py-3 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]">
                                     @if($sp->logo)
-                                        <img src="{{ asset($sp->logo) }}" alt="{{ $sp->name }}" class="max-h-full w-auto object-contain opacity-95 group-hover:opacity-100 transition-transform duration-500 ease-out group-hover:scale-105 mix-blend-multiply brightness-110 contrast-110" loading="lazy" decoding="async"/>
+                                        <img src="{{ asset($sp->logo) }}" alt="{{ $sp->name }}" class="max-h-full w-auto object-contain opacity-95 group-hover:opacity-100 transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy" decoding="async"/>
                                     @else
-                                        <span class="text-white/85 text-lg">{{ $sp->name }}</span>
+                                        <span class="text-slate-900 text-lg font-semibold">{{ $sp->name }}</span>
                                     @endif
                                 </div>
                                 <div class="mt-6 text-sm md:text-base font-semibold text-red-500">{{ $title }}</div>

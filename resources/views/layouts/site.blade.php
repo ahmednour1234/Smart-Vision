@@ -50,10 +50,10 @@
 <body class="site-shell min-h-screen text-slate-100">
 <style>
     .site-shell {
-        background-color: #0f172a;
+        background-color: #000000;
         background-image:
-            radial-gradient(circle at top, rgba(220, 38, 38, 0.22), transparent 30%),
-            linear-gradient(180deg, rgba(15, 23, 42, 0.84), rgba(2, 6, 23, 0.92)),
+            radial-gradient(circle at top, rgba(220, 38, 38, 0.26), transparent 30%),
+            linear-gradient(180deg, rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.94)),
             url('https://smartvisionsummit.com/wp-content/uploads/2025/03/motion-flow1920.webp');
         background-position: top center, center, top center;
         background-repeat: no-repeat, no-repeat, repeat-y;

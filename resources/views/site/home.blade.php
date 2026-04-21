@@ -4,7 +4,7 @@
 @section('content')
     <div class="space-y-16">
         @php
-            $defaultHomeSections = "hero,videos,upcoming,about,testimonials,cta,faq,gallery";
+            $defaultHomeSections = "hero,videos,upcoming,about,testimonials,cta,sponsors,faq,gallery";
             $homeSectionsRaw = \App\Models\Setting::getValue('home_sections');
             $lines = $homeSectionsRaw ? preg_split("/\\r\\n|\\r|\\n/", $homeSectionsRaw) : explode(',', $defaultHomeSections);
             $sections = collect($lines)->map(fn($s) => trim($s))->filter()->values();
