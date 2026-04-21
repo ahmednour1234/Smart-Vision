@@ -47,18 +47,26 @@
         return '<a href="'.e(route($routeName, $params)).'" class="text-base md:text-lg '.$classes.'">'.$label.'</a>';
     };
 @endphp
-<body class="min-h-screen bg-white text-gray-900">
+<body class="site-shell min-h-screen text-slate-100">
 <style>
-    body {
-        background-color: #000000;
-        background-image: url('https://smartvisionsummit.com/wp-content/uploads/2025/03/motion-flow1920.webp');
-        background-position: top center;
-        background-repeat: repeat-y;
-        background-size: contain;
+    .site-shell {
+        background-color: #0f172a;
+        background-image:
+            radial-gradient(circle at top, rgba(220, 38, 38, 0.22), transparent 30%),
+            linear-gradient(180deg, rgba(15, 23, 42, 0.84), rgba(2, 6, 23, 0.92)),
+            url('https://smartvisionsummit.com/wp-content/uploads/2025/03/motion-flow1920.webp');
+        background-position: top center, center, top center;
+        background-repeat: no-repeat, no-repeat, repeat-y;
+        background-size: auto, cover, min(100%, 1440px);
+        background-attachment: scroll, scroll, scroll;
     }
-    .bg-white {
-        --tw-bg-opacity: 1;
-        background-color: rgb(0 0 0) !important;
+    main {
+        min-height: 60vh;
+    }
+    @media (max-width: 768px) {
+        .site-shell {
+            background-size: auto, cover, 180%;
+        }
     }
 </style>
 
