@@ -12,12 +12,25 @@
 
         <section>
             <style>
-                @keyframes floatY { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
-                .card-float { animation: floatY 7s ease-in-out infinite; }
-                .card-float:nth-child(2n) { animation-duration: 8s; }
-                .card-float:nth-child(3n) { animation-duration: 9s; }
-                .s-logo-wrap { height: 7rem; }
-                @media (min-width: 768px) { .s-logo-wrap { height: 8.5rem; } }
+                .s-card {
+                    position: relative;
+                    overflow: hidden;
+                }
+                .s-card::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(145deg, rgba(220, 38, 38, 0.18), rgba(255, 255, 255, 0.02) 45%, rgba(0, 0, 0, 0.18));
+                    pointer-events: none;
+                }
+                .s-logo-wrap {
+                    min-height: 7rem;
+                }
+                @media (min-width: 768px) {
+                    .s-logo-wrap {
+                        min-height: 8rem;
+                    }
+                }
             </style>
             @foreach($groups as $title => $items)
                 <div class="mb-6 text-center">
@@ -27,31 +40,31 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
                     @foreach($items as $sp)
-                        <div class="group card-float rounded-3xl p-[1px] bg-gradient-to-br from-red-700/50 via-zinc-900/60 to-black/70 transition duration-500 hover:from-red-600/70 hover:to-black/80 hover:scale-[1.02]">
-                            <div class="rounded-3xl bg-black/85 ring-1 ring-white/10 p-9 md:p-10 text-center shadow-xl transition duration-500 group-hover:ring-white/20 group-hover:shadow-[0_18px_60px_rgba(0,0,0,0.7)] flex flex-col items-center justify-between">
-                            @if($sp->url)
-                                <a href="{{ $sp->url }}" target="_blank" rel="noopener" class="block w-full focus:outline-none focus:ring-2 focus:ring-red-600/40 rounded-xl">
+                        @php
+                            $hasLink = filled($sp->url);
+                            $tag = $hasLink ? 'a' : 'div';
+                        @endphp
+                        <{{ $tag }}
+                            @if($hasLink) href="{{ $sp->url }}" target="_blank" rel="noopener" @endif
+                            class="group s-card rounded-[28px] border border-white/10 bg-white/[0.04] p-5 md:p-6 shadow-[0_18px_50px_rgba(0,0,0,0.28)] transition duration-300 hover:-translate-y-1 hover:border-red-500/30 hover:shadow-[0_24px_60px_rgba(0,0,0,0.35)] {{ $hasLink ? 'focus:outline-none focus:ring-2 focus:ring-red-600/40' : '' }}"
+                        >
+                            <div class="relative z-10 flex h-full flex-col gap-4">
+                                <div class="inline-flex w-fit items-center rounded-full border border-red-500/20 bg-red-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-red-200">
+                                    Sponsor
+                                </div>
+                                <div class="s-logo-wrap grid place-items-center rounded-[22px] bg-white px-5 py-5 shadow-[0_12px_30px_rgba(15,23,42,0.12)] ring-1 ring-slate-200/80">
                                     @if($sp->logo)
-                                        <div class="s-logo-wrap grid place-items-center">
-                                            <img src="{{ asset($sp->logo) }}" alt="{{ $sp->name }}" class="max-h-full w-auto object-contain opacity-95 group-hover:opacity-100 transition-transform duration-500 ease-out group-hover:scale-105 mix-blend-multiply brightness-110 contrast-110" loading="lazy" decoding="async"/>
-                                        </div>
+                                        <img src="{{ asset($sp->logo) }}" alt="{{ $sp->name }}" class="max-h-20 md:max-h-24 w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async"/>
                                     @else
-                                        <span class="text-white/80 text-lg">{{ $sp->name }}</span>
+                                        <span class="text-slate-900 text-lg font-semibold text-center">{{ $sp->name }}</span>
                                     @endif
-                                    <div class="mt-6 text-sm md:text-base font-semibold text-red-500">{{ $title }}</div>
-                                </a>
-                            @else
-                                @if($sp->logo)
-                                    <div class="s-logo-wrap grid place-items-center">
-                                        <img src="{{ asset($sp->logo) }}" alt="{{ $sp->name }}" class="max-h-full w-auto object-contain opacity-95 group-hover:opacity-100 transition-transform duration-500 ease-out group-hover:scale-105 mix-blend-multiply brightness-110 contrast-110" loading="lazy" decoding="async"/>
-                                    </div>
-                                @else
-                                    <span class="text-white/80 text-lg">{{ $sp->name }}</span>
-                                @endif
-                                <div class="mt-6 text-sm md:text-base font-semibold text-red-500">{{ $title }}</div>
-                            @endif
+                                </div>
+                                <div class="space-y-1">
+                                    <h3 class="text-lg md:text-xl font-semibold text-white">{{ $sp->name }}</h3>
+                                    <p class="text-sm text-white/55">{{ $title }}</p>
+                                </div>
                             </div>
-                        </div>
+                        </{{ $tag }}>
                     @endforeach
                 </div>
             @endforeach
